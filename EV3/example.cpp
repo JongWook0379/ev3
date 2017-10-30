@@ -131,15 +131,29 @@ void Crain::example_code()
 { //This function is for example, you should develop your own logics
     while(get_escape() == false)
     {
-        set_down(ev3dev::button::enter.pressed());
-        set_up(ev3dev::button::enter.pressed());
-        set_right(ev3dev::button::enter.pressed());
-        set_left(ev3dev::button::enter.pressed());
+/*        set_down(ev3dev::medium_motor::medium_motor.connect());
+        set_up(ev3dev::motor::OUTPUT_A.connected());
+        set_down(ev3dev::motor::OUTPUT_B.connected());
+        set_up(ev3dev::motor::OUTPUT_B.connected());
+        set_down(ev3dev::motor::OUTPUT_C.connected());
+        set_up(ev3dev::motor::OUTPUT_C.connected());
+            
+  */      
+        
+//        set_up(ev3dev::button::enter.pressed());
+//        set_right(ev3dev::button::enter.pressed());
+//        set_left(ev3dev::button::enter.pressed());
 
-        if(TRUE())
-        {
-            a.set_speed_sp(get_speed());
-            a.run_to_abs_pos(50);
+    
+        
+            a.set_speed_sp(100);
+            a.command_run_timed[50];
+            
+            a.set_position(50);
+            b.set_speed_sp(100);
+            b.set_position(50);
+            c.set_speed_sp(100);
+            c.set_position(50);
             
             
 /*            b.set_speed_sp(get_speed());
@@ -165,13 +179,13 @@ void Crain::example_code()
 //            b.set_speed_sp(get_speed());
 //            b.set_speed_sp(-1* get_speed());
 //            c.set_speed_sp(get_speed());
-        }        
+                
         
 
     }
 
-    a.stop();
-    b.stop();
+//    a.stop();
+//    b.stop();
 }
 
 int main()
