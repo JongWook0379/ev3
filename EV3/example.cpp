@@ -78,6 +78,11 @@ public:
         return 100;
     }
 
+    virtual int position_sp()
+    {
+        return 50;
+    }
+
     virtual void set_down(bool val)
     {
         m_down = val;
@@ -131,14 +136,20 @@ void Crain::example_code()
         set_right(ev3dev::button::enter.pressed());
         set_left(ev3dev::button::enter.pressed());
 
-        if(get_enter())
+        if(TRUE())
         {
             a.set_speed_sp(get_speed());
-            a.command_run_to_abs_pos[100];
+            a.run_to_abs_pos(50);
+            
+            
+/*            b.set_speed_sp(get_speed());
+            b.run_to_abs_pos();
+            c.set_speed_sp(get_speed());
+            c.run_to_abs_pos();
             
             
             
-/*            a.command_run_timed[200];
+            a.command_run_timed[200];
             a.command_stop[50];
             b.command_run_timed[-200];
             b.command_run_timed[100];
