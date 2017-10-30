@@ -17,6 +17,7 @@ class Crain : public CraneCrane
 {
 private:
     ev3dev::touch_sensor touch_q;
+    ev3dev::light_sensor light_q;
     ev3dev::motor a;
     ev3dev::motor b; 
     ev3dev::motor c;
@@ -24,12 +25,18 @@ private:
     
 public:
     // Hardware Configuration
-    Crain():m_speed(0), touch_q(ev3dev::INPUT_2),a(ev3dev::OUTPUT_B), b(ev3dev::OUTPUT_C), c(ev3dev::OUTPUT_A)
+    Crain():m_speed(0), touch_q(ev3dev::INPUT_2),a(ev3dev::OUTPUT_B), b(ev3dev::OUTPUT_C), c(ev3dev::OUTPUT_A), light_q(ev3dev::INPUT_1)
     {
         
     }
     
     int m_speed;
+    
+    bool get_distance()
+    {
+        return light_q.reflected_light_intensity();
+    }
+    
     
     bool get_touch_pressed()
     {
@@ -125,10 +132,17 @@ void Crain::example_code()
         set_left(ev3dev::button::left.pressed());
         set_escape(ev3dev::button::back.pressed());
         set_enter(ev3dev::button::enter.pressed());
+        
+        
+        a(ev3dev::motor::motor.command_run_forever());
+        b(ev3dev::motor::motor_large());
+        c(ev3dev::motor::motor_medium());
+        
+        
         if(get_enter())
         {
             
-            a.command_run_to_abs_pos[100];
+            l_run.command_run_to_abs_pos[100];
             
             
             
@@ -160,6 +174,9 @@ void Crain::example_code()
 int main()
 {     
     Crain crain;
+    
+    motor::
+    
     while(true){
         if(crain.get_touch_pressed()==true){ 
             
