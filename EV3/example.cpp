@@ -126,27 +126,19 @@ void Crain::example_code()
 { //This function is for example, you should develop your own logics
     while(get_escape() == false)
     {
-        set_down(ev3dev::button::down.pressed());
-        set_up(ev3dev::button::up.pressed());
-        set_right(ev3dev::button::right.pressed());
-        set_left(ev3dev::button::left.pressed());
-        set_escape(ev3dev::button::back.pressed());
-        set_enter(ev3dev::button::enter.pressed());
-        
-        
-        a(ev3dev::motor::motor.command_run_forever());
-        b(ev3dev::motor::motor_large());
-        c(ev3dev::motor::motor_medium());
-        
-        
+        set_down(ev3dev::button::enter.pressed());
+        set_up(ev3dev::button::enter.pressed());
+        set_right(ev3dev::button::enter.pressed());
+        set_left(ev3dev::button::enter.pressed());
+
         if(get_enter())
         {
+            a.set_speed_sp(get_speed());
+            a.command_run_to_abs_pos[100];
             
-            l_run.command_run_to_abs_pos[100];
             
             
-            
-            a.command_run_timed[200];
+/*            a.command_run_timed[200];
             a.command_stop[50];
             b.command_run_timed[-200];
             b.command_run_timed[100];
@@ -155,7 +147,7 @@ void Crain::example_code()
 
             a.command_reset[0];
             b.command_reset[0];
-            
+*/            
             
 //            a.nxt_light(-1*get_speed());
 //            a.set_speed_sp(get_speed());
@@ -175,7 +167,6 @@ int main()
 {     
     Crain crain;
     
-    motor::
     
     while(true){
         if(crain.get_touch_pressed()==true){ 
