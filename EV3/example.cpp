@@ -36,6 +36,11 @@ public:
     {
         return light_q.reflected_light_intensity();
     }
+
+    bool time_sp()
+    {
+        return 100;
+    }
     
     
     bool get_touch_pressed()
@@ -145,9 +150,9 @@ void Crain::example_code()
 //        set_right(ev3dev::button::enter.pressed());
 //        set_left(ev3dev::button::enter.pressed());
 
-        c.set_speed_sp(100);
-        c.set_position(300);
-        c.run_forever();
+//        c.set_speed_sp(100);
+//        c.set_position(300);
+//        c.run_forever();
         
             
          
@@ -196,10 +201,23 @@ void Crain::example_code()
 
 void Crain::example_code2()
 {
-    time_sp=100;
-        c.set_speed_sp(100);
+
+        a.set_speed_sp(50);
+        a.set_position(-300);
+        a.run_to_abs_pos();
+        a.set_position(800);
+        a.run_to_abs_pos();
+      
+
+
+        b.set_speed_sp(50);
+        b.set_position(300);
+        b.run_to_abs_pos();
+        
+        
+        c.set_speed_sp(50);
         c.set_position(300);
-        c.run_timed(time_sp);
+        c.run_to_abs_pos();        
          
 }
 
