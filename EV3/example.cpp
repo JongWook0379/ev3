@@ -118,6 +118,7 @@ public:
     }
 public:
     void example_code();
+    void example_code2();
 };
 
 
@@ -144,24 +145,23 @@ void Crain::example_code()
 //        set_right(ev3dev::button::enter.pressed());
 //        set_left(ev3dev::button::enter.pressed());
 
-    
+        c.set_speed_sp(100);
+        c.set_position(300);
+        c.run_forever();
         
-            a.set_speed_sp(100);
-            a.set_position(100);
             
-//            a.set_position(50);
+         
 
-
-            b.set_speed_sp(100);
-//            b.set_position(50);
+/*            b.set_speed_sp(100);
+            b.set_position(50);
             b.set_position(100);
 
 
             c.set_speed_sp(100);
-//            c.set_position(50);
+            c.set_position(50);
             c.set_position(100);        
             
-/*            b.set_speed_sp(get_speed());
+            b.set_speed_sp(get_speed());
             b.run_to_abs_pos();
             c.set_speed_sp(get_speed());
             c.run_to_abs_pos();
@@ -177,7 +177,7 @@ void Crain::example_code()
 
             a.command_reset[0];
             b.command_reset[0];
-*/            
+         
             
 //            a.nxt_light(-1*get_speed());
 //            a.set_speed_sp(get_speed());
@@ -185,13 +185,25 @@ void Crain::example_code()
 //            b.set_speed_sp(-1* get_speed());
 //            c.set_speed_sp(get_speed());
                 
-        
+*/        
 
     }
 
 //    a.stop();
 //    b.stop();
 }
+
+
+void Crain::example_code2()
+{
+    time_sp=100;
+        c.set_speed_sp(100);
+        c.set_position(300);
+        c.run_timed(time_sp);
+         
+}
+
+
 
 int main()
 {     
@@ -202,8 +214,8 @@ int main()
         if(crain.get_touch_pressed()==true){ 
             
            
-         crain.example_code(); //This line is for example, you should erase this ex_code in your 'real code' 
-      
+//         crain.example_code(); //This line is for example, you should erase this ex_code in your 'real code' 
+        crain.example_code2();
   
   
         }

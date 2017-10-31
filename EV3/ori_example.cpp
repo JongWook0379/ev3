@@ -145,7 +145,7 @@ int main()
 {     
     Crain crain;
     while(true){
-        ifw(crain.get_touch_pressed()==true){ 
+        if(crain.get_touch_pressed()==true){ 
             
         
         crain.example_code(); //This line is for example, you should erase this ex_code in your 'real code' 
