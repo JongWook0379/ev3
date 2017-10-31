@@ -147,14 +147,19 @@ void Crain::example_code()
     
         
             a.set_speed_sp(100);
-            a.command_run_timed[50];
+            a.set_position(100);
             
-            a.set_position(50);
+//            a.set_position(50);
+
+
             b.set_speed_sp(100);
-            b.set_position(50);
+//            b.set_position(50);
+            b.set_position(100);
+
+
             c.set_speed_sp(100);
-            c.set_position(50);
-            
+//            c.set_position(50);
+            c.set_position(100);        
             
 /*            b.set_speed_sp(get_speed());
             b.run_to_abs_pos();
