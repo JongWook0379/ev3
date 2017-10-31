@@ -202,7 +202,7 @@ void Crain::example_code()
 void Crain::example_code2()
 {
 
-        a.set_speed_sp(50);
+/*        a.set_speed_sp(50);
         a.set_position(-300);
         a.run_to_abs_pos();
         a.set_position(800);
@@ -213,11 +213,11 @@ void Crain::example_code2()
         b.set_speed_sp(50);
         b.set_position(300);
         b.run_to_abs_pos();
+*/        
         
-        
-        c.set_speed_sp(50);
-        c.set_position(300);
-        c.run_to_abs_pos();        
+        a.set_speed_sp(50);
+        a.set_position(300);
+        a.run_to_abs_pos();        
          
 }
 
