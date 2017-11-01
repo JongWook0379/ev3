@@ -9,7 +9,7 @@
 #include <functional>
 #include <memory>
 
-float L[3];
+int L[100];
 
 
 class Crain : public CraneCrane
@@ -226,7 +226,9 @@ void Crain::example_code2()
     
     int i = 0;   
     
-    while(c.set_postion() != 800)
+    
+    
+    while(c.position() != 800)
     {
 //        c.set_position(800);
 //        c.run_to_abs_pos();
@@ -237,7 +239,7 @@ void Crain::example_code2()
         {
             L[i] = c.position();
             i++;
-/*            a.stop_action();
+/*          a.stop_action();
             b.reset();
             c.reset();
             b.set_position(-300);
@@ -252,24 +254,24 @@ void Crain::example_code2()
         
     }
 
-
         b.set_position(50);
         b.run_to_abs_pos();
 
 
-        for(int k=0; k<3; k++)
+        for(int k=0; k<30; k++)
     {
-        c.position(L[k]);
+        c.set_position(L[k]);
         c.run_to_abs_pos();
 //      pick up func    
-//      go to end point
+        while(c.position() != 800)
+        {
+            c.run_forever()
+        }
 //      drop func        
     }  
-
         a.stop();
         b.stop();
         c.stop();
-        
 }
 
 
