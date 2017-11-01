@@ -204,6 +204,9 @@ void Crain::example_code2()
 {
 
 //Starting Point
+        a.reset();
+        b.reset();
+        c.reset();
         a.set_speed_sp(50);
         b.set_speed_sp(50);
         c.set_speed_sp(50);
@@ -213,9 +216,10 @@ void Crain::example_code2()
         b.run_to_abs_pos();
         a.reset();
         b.reset();
-        
+        c.reset();
+
     
-    while(get_distance() == 30)
+    while(get_distance() >= 28)
     {
         
         a.set_time_sp(30000);
@@ -226,19 +230,37 @@ void Crain::example_code2()
         c.run_timed();
         
         
-        if(get_distance() <= 30)
+        a.set_position(800);
+        a.run_to_abs_pos();
+        
+        
+        
+        if(get_distance() <= 25)
         {
+            a.stop_action();
+            b.reset();
+            c.reset();
             b.set_position(-300);
-            c.set_position(300);
+            c.set_position(100);
             b.run_to_abs_pos();
             c.run_to_abs_pos();
+            
+            break;
+            
         }
         
-        
-        
+        a.reset();
+        b.reset();
+        c.reset();
+        c.set_position(-100);
+        a.set_position(-800);
+        a.run_to_abs_pos();
         
     }
 
+        a.stop();
+        b.stop();
+        c.stop();
 
         
 }
