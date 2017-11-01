@@ -25,7 +25,7 @@ private:
     
 public:
     // Hardware Configuration
-    Crain():m_speed(0), touch_q(ev3dev::INPUT_2),b(ev3dev::OUTPUT_B), c(ev3dev::OUTPUT_C), a(ev3dev::OUTPUT_A), ultrasonic_q(ev3dev::INPUT_1)
+    Crain():m_speed(0), touch_q(ev3dev::INPUT_2),a(ev3dev::OUTPUT_B), b(ev3dev::OUTPUT_C), c(ev3dev::OUTPUT_A), ultrasonic_q(ev3dev::INPUT_1)
     {
         
     }
@@ -213,27 +213,26 @@ void Crain::example_code2()
 //        c.run_timed();
         
         
-        a.reset();
-        a.set_speed_sp(50);
-        a.set_position(50);
-        a.run_to_abs_pos();
-        a.reset();
-        
-        b.reset();
-        b.set_speed_sp(50);
-        b.set_position(-300);
-        b.run_to_abs_pos();
-        b.reset();
-        
-        
-        c.reset();
+//        c.reset();
         c.set_speed_sp(50);
-        c.set_position(-50);
+        c.set_position(-100);
         c.run_to_abs_pos();
         c.reset();
         
+//        a.reset();
+        a.set_speed_sp(50);
+        a.set_position(150);
+        a.run_to_abs_pos();
+        a.reset();
         
         
+//        b.reset();
+        b.set_speed_sp(50);
+        b.set_position(120);
+        b.run_to_abs_pos();
+        b.reset();
+        
+    
     
     int i = 0;   
     
