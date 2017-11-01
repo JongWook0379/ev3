@@ -18,6 +18,7 @@ class Crain : public CraneCrane
 private:
     ev3dev::touch_sensor touch_q;
     ev3dev::light_sensor light_q;
+    ev3dev::ultrasonic_sensor_q;
     ev3dev::motor a;
     ev3dev::motor b; 
     ev3dev::motor c;
@@ -25,7 +26,7 @@ private:
     
 public:
     // Hardware Configuration
-    Crain():m_speed(0), touch_q(ev3dev::INPUT_2),a(ev3dev::OUTPUT_B), b(ev3dev::OUTPUT_C), c(ev3dev::OUTPUT_A), light_q(ev3dev::INPUT_1)
+    Crain():m_speed(0), touch_q(ev3dev::INPUT_2),a(ev3dev::OUTPUT_B), b(ev3dev::OUTPUT_C), c(ev3dev::OUTPUT_A), ultrasonic_sensor_q(ev3dev::INPUT_1)
     {
         
     }
@@ -34,7 +35,7 @@ public:
     
     bool get_distance()
     {
-        return light_q.reflected_light_intensity();
+        return ultrasonic_sensor_q.distance_centimeters();
     }
 
     bool time_sp()
@@ -202,23 +203,21 @@ void Crain::example_code()
 void Crain::example_code2()
 {
 
-/*        a.set_speed_sp(50);
-        a.set_position(-300);
+        a.set_speed_sp(50);
+        a.set_position(300);
         a.run_to_abs_pos();
-        a.set_position(800);
-        a.run_to_abs_pos();
-      
 
+/*
 
         b.set_speed_sp(50);
         b.set_position(300);
         b.run_to_abs_pos();
-*/        
+
         
         a.set_speed_sp(50);
         a.set_position(300);
         a.run_to_abs_pos();        
-         
+*/         
 }
 
 
