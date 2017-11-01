@@ -203,30 +203,41 @@ void Crain::example_code2()
 {
 
 //Starting Point
+
+        
+//        a.set_time_sp(3000);
+//        b.set_time_sp(3000);
+//        c.set_time_sp(3000);
+//        a.run_timed();
+//        b.run_timed();
+//        c.run_timed();
+        
+        
         a.reset();
-        b.reset();
-        c.reset();
-        a.set_time_sp(30000);
-        b.set_time_sp(30000);
-        c.set_time_sp(30000);
-        a.run_timed();
-        b.run_timed();
-        c.run_timed();
         a.set_speed_sp(50);
-        b.set_speed_sp(50);
-        c.set_speed_sp(50);
-        a.set_position(-300);
-        b.set_position(300);
+        a.set_position(50);
         a.run_to_abs_pos();
-        b.run_to_abs_pos();
         a.reset();
+        
         b.reset();
+        b.set_speed_sp(50);
+        b.set_position(-300);
+        b.run_to_abs_pos();
+        b.reset();
+        
+        
         c.reset();
+        c.set_speed_sp(50);
+        c.set_position(-50);
+        c.run_to_abs_pos();
+        c.reset();
+        
+        
         
     
     int i = 0;   
     
-    
+/*    
     
     while(c.position() != 800)
     {
@@ -239,7 +250,7 @@ void Crain::example_code2()
         {
             L[i] = c.position();
             i++;
-/*          a.stop_action();
+            a.stop_action();
             b.reset();
             c.reset();
             b.set_position(-300);
@@ -248,7 +259,7 @@ void Crain::example_code2()
             c.run_to_abs_pos();
             
             break;
-*/      
+      
         }
         
         
@@ -269,9 +280,14 @@ void Crain::example_code2()
         }
 //      drop func        
     }  
-        a.stop();
-        b.stop();
-        c.stop();
+
+
+*/
+//        a.stop();
+//        b.stop();
+//        c.stop();
+
+
 }
 
 
