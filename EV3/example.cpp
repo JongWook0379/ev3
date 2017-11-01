@@ -9,8 +9,7 @@
 #include <functional>
 #include <memory>
 
-
-
+float L[3];
 
 
 class Crain : public CraneCrane
@@ -26,14 +25,14 @@ private:
     
 public:
     // Hardware Configuration
-    Crain():m_speed(0), touch_q(ev3dev::INPUT_2),a(ev3dev::OUTPUT_B), b(ev3dev::OUTPUT_C), c(ev3dev::OUTPUT_A), ultrasonic_q(ev3dev::INPUT_1)
+    Crain():m_speed(0), touch_q(ev3dev::INPUT_2),b(ev3dev::OUTPUT_B), c(ev3dev::OUTPUT_C), a(ev3dev::OUTPUT_A), ultrasonic_q(ev3dev::INPUT_1)
     {
         
     }
     
     int m_speed;
     
-    bool get_distance()
+    float get_distance()
     {
         return ultrasonic_q.distance_centimeters();
     }
@@ -207,6 +206,12 @@ void Crain::example_code2()
         a.reset();
         b.reset();
         c.reset();
+        a.set_time_sp(30000);
+        b.set_time_sp(30000);
+        c.set_time_sp(30000);
+        a.run_timed();
+        b.run_timed();
+        c.run_timed();
         a.set_speed_sp(50);
         b.set_speed_sp(50);
         c.set_speed_sp(50);
@@ -217,27 +222,22 @@ void Crain::example_code2()
         a.reset();
         b.reset();
         c.reset();
-
+        
     
-    while(get_distance() >= 28)
+    int i = 0;   
+    
+    while(c.set_postion() != 800)
     {
-        
-        a.set_time_sp(30000);
-        b.set_time_sp(30000);
-        c.set_time_sp(30000);
-        a.run_timed();
-        b.run_timed();
-        c.run_timed();
-        
-        
-        a.set_position(800);
-        a.run_to_abs_pos();
-        
-        
-        
+//        c.set_position(800);
+//        c.run_to_abs_pos();
+          c.run_forever();
+          
+          
         if(get_distance() <= 25)
         {
-            a.stop_action();
+            L[i] = c.position();
+            i++;
+/*            a.stop_action();
             b.reset();
             c.reset();
             b.set_position(-300);
@@ -246,22 +246,29 @@ void Crain::example_code2()
             c.run_to_abs_pos();
             
             break;
-            
+*/      
         }
         
-        a.reset();
-        b.reset();
-        c.reset();
-        c.set_position(-100);
-        a.set_position(-800);
-        a.run_to_abs_pos();
         
     }
+
+
+        b.set_position(50);
+        b.run_to_abs_pos();
+
+
+        for(int k=0; k<3; k++)
+    {
+        c.position(L[k]);
+        c.run_to_abs_pos();
+//      pick up func    
+//      go to end point
+//      drop func        
+    }  
 
         a.stop();
         b.stop();
         c.stop();
-
         
 }
 
