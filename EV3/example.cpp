@@ -13,7 +13,7 @@
 
 
 
-cla ss Crain : public CraneCrane
+class Crain : public CraneCrane
 {
 private:
     ev3dev::touch_sensor touch_q;
@@ -203,8 +203,10 @@ void Crain::example_code()
 void Crain::example_code2()
 {
 
+//Starting Point
         a.set_speed_sp(50);
         b.set_speed_sp(50);
+        c.set_speed_sp(50);
         a.set_position(-300);
         b.set_position(300);
         a.run_to_abs_pos();
@@ -212,7 +214,30 @@ void Crain::example_code2()
         a.reset();
         b.reset();
         
+    
+    while(get_distance() == 30)
+    {
         
+        a.set_time_sp(30000);
+        b.set_time_sp(30000);
+        c.set_time_sp(30000);
+        a.run_timed();
+        b.run_timed();
+        c.run_timed();
+        
+        
+        if(get_distance() <= 30)
+        {
+            b.set_position(-300);
+            c.set_position(300);
+            b.run_to_abs_pos();
+            c.run_to_abs_pos();
+        }
+        
+        
+        
+        
+    }
 
 
         
