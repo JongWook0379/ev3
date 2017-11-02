@@ -25,7 +25,7 @@ private:
     
 public:
     // Hardware Configuration
-    Crain():m_speed(0), touch_q(ev3dev::INPUT_2),a(ev3dev::OUTPUT_B), b(ev3dev::OUTPUT_C), c(ev3dev::OUTPUT_A), ultrasonic_q(ev3dev::INPUT_1)
+    Crain():m_speed(0), touch_q(ev3dev::INPUT_2),b(ev3dev::OUTPUT_B), c(ev3dev::OUTPUT_C), a(ev3dev::OUTPUT_A), ultrasonic_q(ev3dev::INPUT_1)
     {
         
     }
@@ -215,7 +215,7 @@ void Crain::example_code2()
         
 //        c.reset();
         c.set_speed_sp(50);
-        c.set_position(-100);
+        c.set_position(150);
         c.run_to_abs_pos();
         c.reset();
         
@@ -279,6 +279,23 @@ void Crain::example_code2()
         }
 //      drop func        
     }  
+
+
+
+//Scanning
+        int i = 0;
+        c.reset();
+        while(c.position() > -300){
+            c.set_speed_sp(100);        
+            c.set_position_sp(-40);
+            c.run_to_rel_pos();
+            if (c.position() < -40*(i+1)){
+                L[i] = c.position();
+                std::cout << L[i] << std::endl;
+                i ++;
+
+
+
 
 
 */
