@@ -141,24 +141,27 @@ public:
 void Crain::default_point()
 {
     
-        b.set_speed_sp(500);        
-        b.set_position_sp(-300);
-        b.run_to_rel_pos();
-        b.stop();
-            
-    
-    
         while(get_touch_pressed()==false){
 /*          
             a.set_speed_sp(100);        
             a.set_position_sp(10);
             a.run_to_rel_pos();
 */            
+
+            b.set_speed_sp(600);        
+            b.set_position_sp(-80);
+            b.run_to_rel_pos();
+            
             c.set_speed_sp(600);        
             c.set_position_sp(100);
             c.run_to_rel_pos(); 
         }
+        
+        
 
+    b.set_speed_sp(0);
+    b.run_forever();
+        
 }
 
 
@@ -177,7 +180,7 @@ void Crain::example_code()
     int j=0;
     int i=0;
     
-    while(j < 80)
+    while(c.position() != 100)
     {
 /*            a.set_speed_sp(100);        
             a.set_position_sp(-10);
@@ -187,19 +190,19 @@ void Crain::example_code()
             b.set_position_sp(-30);
             b.run_to_rel_pos();
 */            
-            c.set_speed_sp(300);        
+            c.set_speed_sp(600);        
             c.set_position_sp(-40);
             c.run_to_rel_pos();
             
         if(get_distance() <= 14)
         {
             L[i] = c.position();
+            std::cout << L[i] << std::endl;
             i++;
-            break;
         }
         
         
-    j++;
+//    j++;
     }
     
     
