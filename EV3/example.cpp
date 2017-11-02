@@ -18,6 +18,7 @@ class Crain : public CraneCrane
 {
 private:
     ev3dev::touch_sensor touch_q;
+    ev3dev::touch_sensor touch_s;
     ev3dev::light_sensor light_q;
     ev3dev::ultrasonic_sensor ultrasonic_q;
     ev3dev::motor a;
@@ -27,7 +28,7 @@ private:
     
 public:
     // Hardware Configuration
-    Crain():m_speed(0), touch_q(ev3dev::INPUT_2),b(ev3dev::OUTPUT_B), c(ev3dev::OUTPUT_C), a(ev3dev::OUTPUT_A), ultrasonic_q(ev3dev::INPUT_1)
+    Crain():m_speed(0), touch_q(ev3dev::INPUT_2), touch_s(ev3dev::INPUT_3), b(ev3dev::OUTPUT_B), c(ev3dev::OUTPUT_C), a(ev3dev::OUTPUT_A), ultrasonic_q(ev3dev::INPUT_1)
     {
         
     }
@@ -49,6 +50,12 @@ public:
     {
         return touch_q.is_pressed();
     }
+
+    bool start_touch_pressed()
+    {
+        return touch_s.is_pressed();
+    }
+
     
     virtual bool get_down()
     {
@@ -125,119 +132,52 @@ public:
     }
 public:
     void example_code();
-    void example_code2();
-    void start_point();
+    void default_point();
 };
 
 
 
+void Crain::default_point()
+{
+        
+//        int j = 0;
+        while(get_touch_pressed()==0){
+/*            a.set_speed_sp(100);        
+            a.set_position_sp(10);
+            a.run_to_rel_pos();
+            
+            b.set_speed_sp(200);        
+            b.set_position_sp(50);
+            b.run_to_rel_pos();
+*/            
+            c.set_speed_sp(300);        
+            c.set_position_sp(40);
+            c.run_to_rel_pos(); 
+//            j++;
 
+            
+        }
+        
+        
+       
+
+        
+        c.stop();
+        a.stop();
+        b.stop();
+        
+    
+    
+    
+    
+}
 
 
 
 
 void Crain::example_code()
-{ //This function is for example, you should develop your own logics
-    while(get_escape() == false)
-    {
-/*        set_down(ev3dev::medium_motor::medium_motor.connect());
-        set_up(ev3dev::motor::OUTPUT_A.connected());
-        set_down(ev3dev::motor::OUTPUT_B.connected());
-        set_up(ev3dev::motor::OUTPUT_B.connected());
-        set_down(ev3dev::motor::OUTPUT_C.connected());
-        set_up(ev3dev::motor::OUTPUT_C.connected());
-            
-  */      
-        
-//        set_up(ev3dev::button::enter.pressed());
-//        set_right(ev3dev::button::enter.pressed());
-//        set_left(ev3dev::button::enter.pressed());
-
-//        c.set_speed_sp(100);
-//        c.set_position(300);
-//        c.run_forever();
-        
-            
-         
-
-/*            b.set_speed_sp(100);
-            b.set_position(50);
-            b.set_position(100);
-
-
-            c.set_speed_sp(100);
-            c.set_position(50);
-            c.set_position(100);        
-            
-            b.set_speed_sp(get_speed());
-            b.run_to_abs_pos();
-            c.set_speed_sp(get_speed());
-            c.run_to_abs_pos();
-            
-            
-            
-            a.command_run_timed[200];
-            a.command_stop[50];
-            b.command_run_timed[-200];
-            b.command_run_timed[100];
-
-
-
-            a.command_reset[0];
-            b.command_reset[0];
-         
-            
-//            a.nxt_light(-1*get_speed());
-//            a.set_speed_sp(get_speed());
-//            b.set_speed_sp(get_speed());
-//            b.set_speed_sp(-1* get_speed());
-//            c.set_speed_sp(get_speed());
-                
-*/        
-
-    }
-
-//    a.stop();
-//    b.stop();
-}
-
-
-void Crain::start_point()
 {
-        c.reset();
-        c.set_speed_sp(300);
-        c.set_position_sp(-300);
-        b.reset();
-        b.set_speed_sp(150);
-        b.set_position_sp(300);
-        a.reset();
-        a.set_speed_sp(100);
-        a.set_position_sp(200);
-
     
-        c.run_to_abs_pos();
-        b.run_to_abs_pos();
-        a.run_to_abs_pos();
-        
-        c.reset();
-        a.reset();
-        b.reset();
-        
-    
-    
-    
-    
-}
-
-
-
-
-void Crain::example_code2()
-{
-
-//Starting Point
-
-        
 //        a.set_time_sp(3000);
 //        b.set_time_sp(3000);
 //        c.set_time_sp(3000);
@@ -331,11 +271,10 @@ int main()
     
     
     while(true){
-        if(crain.get_touch_pressed()==true){ 
+        if(crain.start_touch_pressed()==true){ 
             
-        crain.start_point();   
-//         crain.example_code(); //This line is for example, you should erase this ex_code in your 'real code' 
-        crain.example_code2();
+        crain.default_point();   
+//        crain.example_code();
   
   
         }
