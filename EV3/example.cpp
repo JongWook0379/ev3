@@ -8,6 +8,8 @@
 #include <algorithm>
 #include <functional>
 #include <memory>
+#include <iostream>
+
 
 int L[100];
 
@@ -124,6 +126,7 @@ public:
 public:
     void example_code();
     void example_code2();
+    void start_point();
 };
 
 
@@ -199,6 +202,36 @@ void Crain::example_code()
 }
 
 
+void Crain::start_point()
+{
+        c.reset();
+        c.set_speed_sp(300);
+        c.set_position_sp(-300);
+        b.reset();
+        b.set_speed_sp(150);
+        b.set_position_sp(300);
+        a.reset();
+        a.set_speed_sp(100);
+        a.set_position_sp(200);
+
+    
+        c.run_to_abs_pos();
+        b.run_to_abs_pos();
+        a.run_to_abs_pos();
+        
+        c.reset();
+        a.reset();
+        b.reset();
+        
+    
+    
+    
+    
+}
+
+
+
+
 void Crain::example_code2()
 {
 
@@ -213,24 +246,7 @@ void Crain::example_code2()
 //        c.run_timed();
         
         
-//        c.reset();
-        c.set_speed_sp(50);
-        c.set_position(150);
-        c.run_to_abs_pos();
-        c.reset();
-        
-//        a.reset();
-        a.set_speed_sp(50);
-        a.set_position(150);
-        a.run_to_abs_pos();
-        a.reset();
-        
-        
-//        b.reset();
-        b.set_speed_sp(50);
-        b.set_position(120);
-        b.run_to_abs_pos();
-        b.reset();
+
         
     
     
@@ -317,7 +333,7 @@ int main()
     while(true){
         if(crain.get_touch_pressed()==true){ 
             
-           
+        crain.start_point();   
 //         crain.example_code(); //This line is for example, you should erase this ex_code in your 'real code' 
         crain.example_code2();
   
