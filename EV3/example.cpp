@@ -133,89 +133,89 @@ public:
 public:
     void example_code();
     void default_point();
+    void m_reset();
 };
 
 
 
 void Crain::default_point()
 {
-        
-//        int j = 0;
+    
+        b.set_speed_sp(500);        
+        b.set_position_sp(-300);
+        b.run_to_rel_pos();
+        b.stop();
+            
+    
+    
         while(get_touch_pressed()==false){
-/*            a.set_speed_sp(100);        
+/*          
+            a.set_speed_sp(100);        
             a.set_position_sp(10);
             a.run_to_rel_pos();
-            
-            b.set_speed_sp(200);        
-            b.set_position_sp(50);
-            b.run_to_rel_pos();
 */            
-            c.set_speed_sp(300);        
-            c.set_position_sp(40);
+            c.set_speed_sp(600);        
+            c.set_position_sp(100);
             c.run_to_rel_pos(); 
-//            j++;
-
-            
         }
-        
-        
-       
 
-        
-        c.stop();
-        a.stop();
-        b.stop();
-        
-    
-    
-    
-    
 }
 
+
+void Crain::m_reset()
+{
+        c.reset();
+        a.reset();
+        b.reset();
+}
 
 
 
 void Crain::example_code()
 {
     
-//        a.set_time_sp(3000);
-//        b.set_time_sp(3000);
-//        c.set_time_sp(3000);
-//        a.run_timed();
-//        b.run_timed();
-//        c.run_timed();
-        
-        
-
-        
+    int j=0;
+    int i=0;
     
-    
-    int i = 0;   
-    
-/*    
-    
-    while(c.position() != 800)
+    while(j < 80)
     {
-//        c.set_position(800);
-//        c.run_to_abs_pos();
-          c.run_forever();
-          
-          
-        if(get_distance() <= 25)
+/*            a.set_speed_sp(100);        
+            a.set_position_sp(-10);
+            a.run_to_rel_pos();
+            
+            b.set_speed_sp(200);        
+            b.set_position_sp(-30);
+            b.run_to_rel_pos();
+*/            
+            c.set_speed_sp(300);        
+            c.set_position_sp(-40);
+            c.run_to_rel_pos();
+            
+        if(get_distance() <= 14)
         {
             L[i] = c.position();
             i++;
-            a.stop_action();
-            b.reset();
-            c.reset();
-            b.set_position(-300);
-            c.set_position(100);
-            b.run_to_abs_pos();
-            c.run_to_abs_pos();
-            
             break;
-      
         }
+        
+        
+    j++;
+    }
+    
+    
+    
+    
+    
+/*    
+    
+    while(c.position()!= 800)
+    {
+        c.set_speed_sp(600);
+        c.set_position(800);
+        c.run_to_rel_pos();
+          
+          
+        
         
         
     }
@@ -255,11 +255,13 @@ void Crain::example_code()
 
 
 
-*/
+
 //        a.stop();
 //        b.stop();
 //        c.stop();
 
+
+*/
 
 }
 
@@ -274,7 +276,8 @@ int main()
         if(crain.start_touch_pressed()==true){ 
             
         crain.default_point();   
-//        crain.example_code();
+        crain.m_reset();
+        crain.example_code();
   
   
         }
