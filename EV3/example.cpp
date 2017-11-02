@@ -293,7 +293,8 @@ void Crain::example_code2()
                 L[i] = c.position();
                 std::cout << L[i] << std::endl;
                 i ++;
-
+            }
+        }
 
 
 
