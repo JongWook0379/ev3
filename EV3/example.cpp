@@ -141,7 +141,7 @@ void Crain::default_point()
 {
         
 //        int j = 0;
-        while(get_touch_pressed()==0){
+        while(get_touch_pressed()==false){
 /*            a.set_speed_sp(100);        
             a.set_position_sp(10);
             a.run_to_rel_pos();
