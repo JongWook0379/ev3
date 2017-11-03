@@ -124,6 +124,7 @@ public:
     void pick_up();
     void default_point();
     void default_point_2();
+    void default_point_3();
     void m_reset();
     void drop();
 };
@@ -140,7 +141,11 @@ void Crain::hold_m()
 void Crain::default_point()
 {
 
+        
+        
         int i= 0;
+        
+        
         
         while(ultrasonic_q.distance_centimeters() < 10){
             b.set_speed_sp(500);
@@ -149,6 +154,8 @@ void Crain::default_point()
             
         }
         Crain::hold_m();
+        
+        
 
 
         
@@ -183,12 +190,19 @@ void Crain::default_point()
             
         }
             
-            c.set_speed_sp(800);
-            c.set_position_sp(-50);
-            c.run_to_rel_pos();
-                    
-        c.reset();
+        int u=0;
+        while(u<700){
+        c.set_speed_sp(600);
+        c.set_position_sp(-4);
+        c.run_to_rel_pos();
+        u++;
+        }        
         
+        
+                    
+        a.stop();
+        b.stop();
+        c.stop();
 }
         
 void Crain::default_point_2()
@@ -234,10 +248,14 @@ void Crain::default_point_2()
             
         }
         
-        c.set_speed_sp(800);
-        c.set_position_sp(-100);
+        int u=0;
+        while(u<700){
+        c.set_speed_sp(600);
+        c.set_position_sp(-50);
         c.run_to_rel_pos();
-
+        u++;
+        }        
+        
         
 /*    int p=0;
     if(get_distance()<3){
@@ -259,6 +277,77 @@ void Crain::default_point_2()
     }    
         
         
+        
+void Crain::default_point_3()
+{
+
+        int i= 0;
+
+            
+        while(ultrasonic_q.distance_centimeters() < 10){
+            b.set_speed_sp(500);
+            b.set_position_sp(-3);
+            b.run_to_rel_pos();
+                        
+        }
+        Crain::hold_m();
+
+
+        
+        while(get_touch_pressed()==0){
+            c.set_speed_sp(500);        
+            c.set_position_sp(-40);
+            c.run_to_rel_pos();
+            
+            if(ultrasonic_q.distance_centimeters()<9)
+            {
+                c.set_speed_sp(0);
+                c.run_forever();
+            
+                c.set_speed_sp(800);        
+                c.set_position_sp(-50);
+                c.run_to_rel_pos();
+            
+                pick_up();
+            
+                while(get_touch_pressed()==0){
+                    c.set_speed_sp(500);        
+                    c.set_position_sp(40);
+                    c.run_to_rel_pos();
+            }
+            
+            drop();
+            }
+            
+        }
+        
+/*        int u=0;
+        while(u<700){
+        c.set_speed_sp(600);
+        c.set_position_sp(-1);
+        c.run_to_rel_pos();
+        u++;
+        }        
+        
+        
+    int p=0;
+    if(get_distance()<3){
+        while(p<80){
+            b.set_speed_sp(200);
+            b.set_position_sp(-3);
+            b.run_to_rel_pos();
+            
+            c.set_speed_sp(500);        
+            c.set_position_sp(-40);
+            c.run_to_rel_pos();
+        
+        p++;    
+            
+        }
+    Crain::hold_m();    
+
+*/
+    }    
         
         
         
@@ -375,9 +464,20 @@ int main()
     Crain crain;
     while(true){
         if(crain.start_touch_pressed()==true){ 
+            
+            
+
             crain.default_point();
-            crain.default_point_2();
-            crain.default_point_2();
-        }
+            crain.default_point();
+            crain.default_point();
+            crain.default_point();
+            
+//            crain.default_point_2();
+//            crain.default_point_3();
     }
 }
+
+
+}
+
+
