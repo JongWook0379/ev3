@@ -270,6 +270,20 @@ void Crain::example_code()
 
 
 
+void Crain::robot()
+{     
+    
+        crain.default_point();   
+        crain.m_reset();
+        crain.example_code();
+  
+}
+
+
+
+
+
+
 int main()
 {     
     Crain crain;
@@ -278,9 +292,10 @@ int main()
     while(true){
         if(crain.start_touch_pressed()==true){ 
             
-        crain.default_point();   
-        crain.m_reset();
-        crain.example_code();
+        
+        crain.robot()* instance=new crain.robot();
+        crain.robot().execute();
+        delete crain.robot();
   
   
         }
