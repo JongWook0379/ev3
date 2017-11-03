@@ -28,7 +28,7 @@ private:
     
 public:
     // Hardware Configuration
-    Crain():m_speed(0), touch_q(ev3dev::INPUT_2), touch_s(ev3dev::INPUT_3), b(ev3dev::OUTPUT_B), c(ev3dev::OUTPUT_C), a(ev3dev::OUTPUT_A), ultrasonic_q(ev3dev::INPUT_1)
+    Crain():m_speed(0), touch_q(ev3dev::INPUT_2), touch_s(ev3dev::INPUT_4), b(ev3dev::OUTPUT_B), c(ev3dev::OUTPUT_C), a(ev3dev::OUTPUT_A), ultrasonic_q(ev3dev::INPUT_1)
     {
         
     }
@@ -131,11 +131,121 @@ public:
         m_speed = val;    
     }
 public:
-    void example_code();
+    void robot();
     void default_point();
     void m_reset();
+    void hold_m();
+    void scan();
+    void pick_up();
+    void default_point();
+    void drop();
 };
 
+
+void Crain::hold_m()
+{
+        b.set_speed_sp(0);
+        b.run_forever();
+}
+
+
+
+void Crain::pick_up()
+{
+        int i = 0;
+        while( ultrasonic_q.distance_centimeters() < 10){
+            b.set_speed_sp(500);
+            b.set_position_sp(-3);
+            b.run_to_rel_pos();
+        }
+        Crain::hold_m();
+        
+        while( ultrasonic_q.distance_centimeters() > 4){
+            b.set_speed_sp(200);
+            b.set_position_sp(3);
+            b.run_to_rel_pos();
+        }
+        Crain::hold_m();
+
+        
+        i = 0;
+        while( i < 400){
+            a.set_speed_sp(600);
+            a.set_position_sp(-1);
+            a.run_to_rel_pos();
+            i ++;
+        }
+        b.set_speed_sp(0);
+        b.run_forever();
+
+        while( ultrasonic_q.distance_centimeters() < 10){
+            b.set_speed_sp(500);
+            b.set_position_sp(-3);
+            b.run_to_rel_pos();
+        }
+        Crain::hold_m();    
+}
+
+void Crain::drop()
+{
+        int i;
+        while(ultrasonic_q.distance_centimeters() > 4){
+            b.set_speed_sp(200);
+            b.set_position_sp(3);
+            b.run_to_rel_pos();
+        }
+        Crain::hold_m();
+
+        i = 0;
+        while( i < 400){
+            a.set_speed_sp(600);
+            a.set_position_sp(1);
+            a.run_to_rel_pos();
+            i ++;
+        }
+        
+        while(ultrasonic_q.distance_centimeters() < 10){
+            b.set_speed_sp(200);
+            b.set_position_sp(-3);
+            b.run_to_rel_pos();
+        }
+        Crain::hold_m();
+}
+
+
+void Crain::scan()
+{
+        int i = 0;
+        while(ultrasonic_q.distance_centimeters() < 10){
+            b.set_speed_sp(500);
+            b.set_position_sp(-3);
+            b.run_to_rel_pos();
+            i++;
+        }
+        Crain::hold_m();
+
+        
+        i = 0;
+        int dis = 0;
+        dis = ultrasonic_q.distance_centimeters();
+        std::cout << "dis =" << dis << std::endl;
+        
+        c.reset();
+        while(touch_q.is_pressed() != true){
+            c.set_speed_sp(200);        
+            c.set_position_sp(50);
+            c.run_to_rel_pos();
+            
+            if(ultrasonic_q.distance_centimeters() < dis-0.7 ){
+                L[i] = c.position();
+                std::cout << "Position :" <<L[i] << std::endl;
+                i ++;
+            if (touch_q.is_pressed() == true) break;
+            }
+
+        }
+
+}
 
 
 void Crain::default_point()
