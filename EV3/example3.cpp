@@ -370,9 +370,9 @@ int main()
         if(crain.start_touch_pressed()==true){ 
             
         
-        crain.robot()* instance = new crain.robot();
+        void* r_func = new crain.robot();
         crain.robot().execute();
-        delete crain.robot();
+        delete r_func();
   
   
         }

@@ -1,3 +1,10 @@
 example* instance=new example;
 example.execute();
 delete example;
+
+
+
+default_point* instance=new default_point;
+default_point.execute();
+delete default_point;
+
