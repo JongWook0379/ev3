@@ -480,6 +480,8 @@ void Crain::robot(){
             crain.Do_2();
             crain.go_back();
             crain.Do_3();
+            
+            
 
 }
 
@@ -495,20 +497,26 @@ int main()
    while(true){
         if(crain.start_touch_pressed()==true){ 
         
+//        crain.robot();
+//            crain.robot();    
         a->robot();
-        
-        
+
         
         break;
             
         }
         
-        
+    
+    
+
+    
+
         
     }
 
 
-    delete a;
-    exit(0);
+    delete a; 
     
+    exit(0);
+   
 }
