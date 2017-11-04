@@ -125,6 +125,7 @@ public:
     void Do_2();
     void Do_3();
     void go_back();
+    void go_back2();
     void m_reset();
     void drop();
     void robot();
@@ -147,9 +148,9 @@ void Crain::Do_1()
 
         int i= 0;
         
-        while(ultrasonic_q.distance_centimeters() < 11){
+        while(ultrasonic_q.distance_centimeters() < 10){
             b.set_speed_sp(800);
-            b.set_position_sp(-3);
+            b.set_position_sp(-5);
             b.run_to_rel_pos();
             
         }
@@ -171,7 +172,7 @@ void Crain::Do_1()
             c.set_position_sp(-25);
             c.run_to_rel_pos();
 
-            while(ultrasonic_q.distance_centimeters() < 11){
+            while(ultrasonic_q.distance_centimeters() < 10){
                 b.set_speed_sp(800);
                 b.set_position_sp(-3);
                 b.run_to_rel_pos();
@@ -181,9 +182,9 @@ void Crain::Do_1()
                         
             pick_up();
             
-            while(ultrasonic_q.distance_centimeters() < 11){
+            while(ultrasonic_q.distance_centimeters() < 10){
                 b.set_speed_sp(800);
-                b.set_position_sp(-3);
+                b.set_position_sp(-5);
                 b.run_to_rel_pos();
                 
             }
@@ -191,11 +192,13 @@ void Crain::Do_1()
 
             
             while(get_touch_pressed()==0){
-            c.set_speed_sp(500);        
+            c.set_speed_sp(800);        
             c.set_position_sp(40);
             c.run_to_rel_pos();
             }
             drop();
+            
+            
             }
         }
 }
@@ -204,7 +207,7 @@ void Crain::Do_2()
 
         int i= 0;
         
-        while(ultrasonic_q.distance_centimeters() < 11){
+        while(ultrasonic_q.distance_centimeters() < 10){
             b.set_speed_sp(800);
             b.set_position_sp(-3);
             b.run_to_rel_pos();
@@ -225,10 +228,10 @@ void Crain::Do_2()
             c.run_forever();
             
             c.set_speed_sp(800);        
-            c.set_position_sp(-20);
+            c.set_position_sp(-30);
             c.run_to_rel_pos();
 
-            while(ultrasonic_q.distance_centimeters() < 11){
+            while(ultrasonic_q.distance_centimeters() < 10){
                 b.set_speed_sp(800);
                 b.set_position_sp(-3);
                 b.run_to_rel_pos();
@@ -238,7 +241,7 @@ void Crain::Do_2()
                         
             pick_up();
             
-            while(ultrasonic_q.distance_centimeters() < 11){
+            while(ultrasonic_q.distance_centimeters() < 10){
                 b.set_speed_sp(800);
                 b.set_position_sp(-3);
                 b.run_to_rel_pos();
@@ -261,7 +264,7 @@ void Crain::Do_3()
 
         int i= 0;
         
-        while(ultrasonic_q.distance_centimeters() < 11){
+        while(ultrasonic_q.distance_centimeters() < 10){
             b.set_speed_sp(800);
             b.set_position_sp(-3);
             b.run_to_rel_pos();
@@ -272,7 +275,7 @@ void Crain::Do_3()
 
         
         while(get_touch_pressed()==0){
-            c.set_speed_sp(600);        
+            c.set_speed_sp(800);        
             c.set_position_sp(40);
             c.run_to_rel_pos();
             
@@ -285,7 +288,7 @@ void Crain::Do_3()
             c.set_position_sp(-10);
             c.run_to_rel_pos();
 
-            while(ultrasonic_q.distance_centimeters() < 11){
+            while(ultrasonic_q.distance_centimeters() < 10){
                 b.set_speed_sp(800);
                 b.set_position_sp(-3);
                 b.run_to_rel_pos();
@@ -295,7 +298,7 @@ void Crain::Do_3()
                         
             pick_up();
             
-            while(ultrasonic_q.distance_centimeters() < 11){
+            while(ultrasonic_q.distance_centimeters() < 10){
                 b.set_speed_sp(800);
                 b.set_position_sp(-3);
                 b.run_to_rel_pos();
@@ -317,13 +320,35 @@ void Crain::Do_3()
 void Crain::go_back()
 {
         int i = 0 ;
-        while( i < 800){
+        while( i<700 ){
             c.set_speed_sp(800);
             c.set_position_sp(-2);
             c.run_to_rel_pos();
             i++;
         }
 }
+
+
+
+
+void Crain::go_back2()
+{
+        int i = 0 ;
+        while( i<300 ){
+            c.set_speed_sp(800);
+            c.set_position_sp(-2);
+            c.run_to_rel_pos();
+            i++;
+        }
+}
+
+
+
+
+
+
+
+
 /*
 {
 
@@ -370,7 +395,7 @@ void Crain::go_back()
 void Crain::pick_up()
 {
         int i = 0;
-        while( ultrasonic_q.distance_centimeters() < 11){
+        while( ultrasonic_q.distance_centimeters() < 10){
             b.set_speed_sp(800);
             b.set_position_sp(-4);
             b.run_to_rel_pos();
@@ -394,7 +419,7 @@ void Crain::pick_up()
         b.set_speed_sp(0);
         b.run_forever();
 
-        while( ultrasonic_q.distance_centimeters() < 11){
+        while( ultrasonic_q.distance_centimeters() < 10){
             b.set_speed_sp(800);
             b.set_position_sp(-4);
             b.run_to_rel_pos();
@@ -407,8 +432,8 @@ void Crain::drop()
 {
         int i;
         while(ultrasonic_q.distance_centimeters() > 5){
-            b.set_speed_sp(600);
-            b.set_position_sp(3);
+            b.set_speed_sp(800);
+            b.set_position_sp(6);
             b.run_to_rel_pos();
         }
         Crain::hold_m();
@@ -423,7 +448,7 @@ void Crain::drop()
         
         while(ultrasonic_q.distance_centimeters() < 10){
             b.set_speed_sp(800);
-            b.set_position_sp(-3);
+            b.set_position_sp(-6);
             b.run_to_rel_pos();
         }
 
@@ -478,7 +503,7 @@ void Crain::robot(){
             crain.Do_1();
             crain.go_back();
             crain.Do_2();
-            crain.go_back();
+            crain.go_back2();
             crain.Do_3();
             
             
