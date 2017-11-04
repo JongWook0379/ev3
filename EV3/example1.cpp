@@ -320,7 +320,7 @@ void Crain::Do_3()
 void Crain::go_back()
 {
         int i = 0 ;
-        while( i<700 ){
+        while( i<7d00 ){
             c.set_speed_sp(800);
             c.set_position_sp(-2);
             c.run_to_rel_pos();
