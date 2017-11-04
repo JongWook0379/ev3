@@ -162,16 +162,33 @@ void Crain::Do_1()
             c.set_position_sp(40);
             c.run_to_rel_pos();
             
-            if(ultrasonic_q.distance_centimeters()<8.5)
+            if(ultrasonic_q.distance_centimeters()<9)
             {
             c.set_speed_sp(0);
             c.run_forever();
             
             c.set_speed_sp(800);        
-            c.set_position_sp(-22);
+            c.set_position_sp(-25);
             c.run_to_rel_pos();
-            
+
+            while(ultrasonic_q.distance_centimeters() < 11){
+                b.set_speed_sp(800);
+                b.set_position_sp(-3);
+                b.run_to_rel_pos();
+                
+            }
+            Crain::hold_m();
+                        
             pick_up();
+            
+            while(ultrasonic_q.distance_centimeters() < 11){
+                b.set_speed_sp(800);
+                b.set_position_sp(-3);
+                b.run_to_rel_pos();
+                
+            }
+            Crain::hold_m();
+
             
             while(get_touch_pressed()==0){
             c.set_speed_sp(500);        
@@ -182,7 +199,6 @@ void Crain::Do_1()
             }
         }
 }
-
 void Crain::Do_2()
 {
 
@@ -203,7 +219,7 @@ void Crain::Do_2()
             c.set_position_sp(40);
             c.run_to_rel_pos();
             
-            if(ultrasonic_q.distance_centimeters()<8.5)
+            if(ultrasonic_q.distance_centimeters()<9)
             {
             c.set_speed_sp(0);
             c.run_forever();
@@ -211,8 +227,25 @@ void Crain::Do_2()
             c.set_speed_sp(800);        
             c.set_position_sp(-20);
             c.run_to_rel_pos();
-            
+
+            while(ultrasonic_q.distance_centimeters() < 11){
+                b.set_speed_sp(800);
+                b.set_position_sp(-3);
+                b.run_to_rel_pos();
+                
+            }
+            Crain::hold_m();
+                        
             pick_up();
+            
+            while(ultrasonic_q.distance_centimeters() < 11){
+                b.set_speed_sp(800);
+                b.set_position_sp(-3);
+                b.run_to_rel_pos();
+                
+            }
+            Crain::hold_m();
+
             
             while(get_touch_pressed()==0){
             c.set_speed_sp(500);        
@@ -223,7 +256,6 @@ void Crain::Do_2()
             }
         }
 }
-
 void Crain::Do_3()
 {
 
@@ -244,7 +276,7 @@ void Crain::Do_3()
             c.set_position_sp(40);
             c.run_to_rel_pos();
             
-            if(ultrasonic_q.distance_centimeters()<8.5)
+            if(ultrasonic_q.distance_centimeters()<9)
             {
             c.set_speed_sp(0);
             c.run_forever();
@@ -252,8 +284,25 @@ void Crain::Do_3()
             c.set_speed_sp(800);        
             c.set_position_sp(-10);
             c.run_to_rel_pos();
-            
+
+            while(ultrasonic_q.distance_centimeters() < 11){
+                b.set_speed_sp(800);
+                b.set_position_sp(-3);
+                b.run_to_rel_pos();
+                
+            }
+            Crain::hold_m();
+                        
             pick_up();
+            
+            while(ultrasonic_q.distance_centimeters() < 11){
+                b.set_speed_sp(800);
+                b.set_position_sp(-3);
+                b.run_to_rel_pos();
+                
+            }
+            Crain::hold_m();
+
             
             while(get_touch_pressed()==0){
             c.set_speed_sp(500);        
@@ -366,7 +415,7 @@ void Crain::drop()
 
         i = 0;
         while( i < 600){
-            a.set_speed_sp(600);
+            a.set_speed_sp(550);
             a.set_position_sp(1.5);
             a.run_to_rel_pos();
             i ++;
@@ -422,8 +471,6 @@ void Crain::scan()
 }
 */
 
-
-
 void Crain::robot(){
             
             Crain crain;
@@ -436,18 +483,18 @@ void Crain::robot(){
 }
 
 
+
 int main()
 {     
     Crain crain;
    while(true){
         if(crain.start_touch_pressed()==true){ 
-
-  
-        
-        Crain* a = new Crain;
+       
+       
+        Crain* a = new Crain();
         a->robot();
-        a();
-        delete Crain;
+        a;
+        delete a;
 
             
         }
